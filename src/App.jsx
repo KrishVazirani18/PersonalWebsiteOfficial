@@ -506,22 +506,14 @@ const App = () => {
           {dateTime} NC
         </div>
         
-        <div className="flex items-center gap-4">
-            <button 
-               onClick={() => setIsSummaryOpen(true)}
-               className="pointer-events-auto px-4 py-2 text-[10px] md:text-xs font-mono uppercase tracking-widest hover:bg-zinc-100 rounded-full transition-colors text-zinc-600"
-            >
-               Profile
-            </button>
-            <a 
-               href="https://linkedin.com/in/krish-vazirani-814511236" 
-               target="_blank" 
-               rel="noreferrer"
-               className="pointer-events-auto w-10 h-10 bg-white border border-zinc-200 rounded-full flex items-center justify-center hover:bg-zinc-900 hover:text-white hover:border-zinc-900 transition-all shadow-sm hover:shadow-md"
-            >
-               <Linkedin size={16} />
-            </a>
-        </div>
+        <a 
+           href="https://linkedin.com/in/krish-vazirani-814511236" 
+           target="_blank" 
+           rel="noreferrer"
+           className="pointer-events-auto w-10 h-10 bg-white border border-zinc-200 rounded-full flex items-center justify-center hover:bg-zinc-900 hover:text-white hover:border-zinc-900 transition-all shadow-sm hover:shadow-md"
+        >
+           <Linkedin size={16} />
+        </a>
       </header>
       
       <SummaryModal isOpen={isSummaryOpen} onClose={() => setIsSummaryOpen(false)} />
