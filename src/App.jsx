@@ -506,14 +506,22 @@ const App = () => {
           {dateTime} NC
         </div>
         
-        <a 
-           href="https://linkedin.com/in/krish-vazirani-814511236" 
-           target="_blank" 
-           rel="noreferrer"
-           className="pointer-events-auto w-10 h-10 bg-white border border-zinc-200 rounded-full flex items-center justify-center hover:bg-zinc-900 hover:text-white hover:border-zinc-900 transition-all shadow-sm hover:shadow-md"
-        >
-           <Linkedin size={16} />
-        </a>
+        <div className="flex items-center gap-4">
+            <button 
+               onClick={() => setIsSummaryOpen(true)}
+               className="pointer-events-auto px-4 py-2 text-[10px] md:text-xs font-mono uppercase tracking-widest hover:bg-zinc-100 rounded-full transition-colors text-zinc-600"
+            >
+               Profile
+            </button>
+            <a 
+               href="https://linkedin.com/in/krish-vazirani-814511236" 
+               target="_blank" 
+               rel="noreferrer"
+               className="pointer-events-auto w-10 h-10 bg-white border border-zinc-200 rounded-full flex items-center justify-center hover:bg-zinc-900 hover:text-white hover:border-zinc-900 transition-all shadow-sm hover:shadow-md"
+            >
+               <Linkedin size={16} />
+            </a>
+        </div>
       </header>
       
       <SummaryModal isOpen={isSummaryOpen} onClose={() => setIsSummaryOpen(false)} />
@@ -535,7 +543,19 @@ const App = () => {
       {/* 4. Hero Section */}
       <section className="min-h-[90vh] flex flex-col items-center justify-center relative z-20 px-6">
         <div className="text-center max-w-4xl pt-20">
-           <div className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 bg-zinc-50 border border-zinc-200 rounded-full shadow-sm hover:shadow-md transition-shadow cursor-default">
+           <div className="mb-8 flex justify-center">
+              <img 
+                src={headshot} 
+                alt="Krish Vazirani" 
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-2 border-zinc-100 shadow-2xl cursor-pointer hover:scale-105 transition-transform"
+                onClick={() => setIsSummaryOpen(true)}
+              />
+           </div>
+
+           <div 
+              onClick={() => setIsSummaryOpen(true)}
+              className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 bg-zinc-50 border border-zinc-200 rounded-full shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+           >
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 duration-1000"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
