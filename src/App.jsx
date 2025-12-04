@@ -373,7 +373,7 @@ const App = () => {
       title: "Startup",
       company: "PowerCMA",
       companyLogo: powerCmaLogo, 
-      role: "Founder & CEO",
+      role: "Co-Founder & CEO",
       period: "May 2024 — Nov 2024",
       link: null,
       text: "It started with a gap. I saw realtors drowning in data entry. I realized this wasn't just a nuisance; it was a market inefficiency waiting for code.",
@@ -393,7 +393,7 @@ const App = () => {
       title: "VC Firm",
       company: "LvlUp Ventures",
       companyLogo: lvlUpLogo,
-      role: "Head of Technology & Investor",
+      role: "Head of Technology",
       period: "Dec 2024 — Jul 2025",
       link: "https://www.lvlup.vc",
       text: "After the exit, I needed to understand scale. I joined LvlUp ($300M AUM) to see how big capital handles big data.",
@@ -413,7 +413,7 @@ const App = () => {
       title: "Startup",
       company: "Brightstar",
       companyLogo: brightstarLogo,
-      role: "Founder & Managing Partner",
+      role: "Co-Founder & Managing Partner",
       period: "Feb 2025 — Present",
       link: "https://www.buildwithbrightstar.com",
       text: "Brightstar is a product development firm I started with a few buddies of mine.",
@@ -622,7 +622,7 @@ const App = () => {
                           {chapter.period}
                         </div>
                         <h2 className="text-3xl md:text-6xl font-bold mb-2 tracking-tight">{chapter.company}</h2>
-                        <h3 className="text-lg md:text-xl text-zinc-400 font-medium mb-8">{chapter.title}</h3>
+                        <h3 className="text-lg md:text-xl text-zinc-400 font-medium mb-8">{chapter.role}</h3>
                         
                         <p className="text-lg md:text-2xl font-light leading-relaxed text-zinc-800 mb-6">
                           {chapter.text}
