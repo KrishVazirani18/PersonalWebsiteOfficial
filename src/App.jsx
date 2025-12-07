@@ -202,41 +202,41 @@ const SummaryModal = ({ isOpen, onClose }) => {
   );
 };
 
-const SharpieUnderline = ({ children, delay = "0s" }) => (
-  <span className="relative inline-block">
-    <span className="relative z-10">{children}</span>
-    <svg 
-      className="absolute left-0 top-full -mt-1 w-full h-3 pointer-events-none text-zinc-900 overflow-visible" 
-      viewBox="0 0 100 10" 
-      preserveAspectRatio="none"
-    >
-       <path 
-         d="M2 5 Q 50 10 98 5" 
-         vectorEffect="non-scaling-stroke" 
-         stroke="currentColor" 
-         strokeWidth="3" 
-         fill="none" 
-         strokeLinecap="round"
-         className="path-draw"
-         style={{ animationDelay: delay }}
-       />
-    </svg>
-  </span>
-);
+const useInView = (options = {}) => {
+  const ref = useRef(null);
+  const [isInView, setIsInView] = useState(false);
 
-const Highlighter = ({ children, delay = "1.5s" }) => (
-  <span className="relative inline-block">
-    <span className="relative z-10 px-1">{children}</span>
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsInView(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.5, ...options });
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, isInView];
+};
+
+const Highlighter = ({ children, delay = 500 }) => {
+  const [ref, isInView] = useInView({ threshold: 0.5 });
+
+  return (
     <span 
-      className="absolute inset-0 bg-yellow-300 mix-blend-multiply highlight-anim -z-0"
-      style={{ 
-        animationDelay: delay,
-        transform: 'skewY(-1deg) rotate(-1deg)',
-        borderRadius: '2px 8px 3px 6px' 
-      }}
-    ></span>
-  </span>
-);
+      ref={ref} 
+      className={`highlight-text ${isInView ? 'active' : ''}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </span>
+  );
+};
 
 const App = () => {
   const [activeChapter, setActiveChapter] = useState(0);
@@ -555,7 +555,7 @@ const App = () => {
       <SummaryModal isOpen={isSummaryOpen} onClose={() => setIsSummaryOpen(false)} />
 
       {/* 3. The Central Spine */}
-      <div className="fixed left-6 md:left-1/2 top-0 bottom-0 w-[1px] bg-zinc-100 z-0 md:-translate-x-1/2 transition-all duration-300">
+      <div className="fixed left-6 md:left-1/2 top-0 bottom-0 w-[1px] bg-zinc-100 z-[1] md:-translate-x-1/2 transition-all duration-300">
         <div 
           ref={spineLineRef}
           className="absolute top-0 left-0 w-full bg-zinc-900 transition-none ease-linear" // Removed transition for smoother lerp
@@ -563,17 +563,16 @@ const App = () => {
         ></div>
         <div 
            ref={spineTrackerRef}
-           className={`absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] z-10 transition-transform duration-100 ${collidingChapter !== null ? 'bg-white scale-100' : 'bg-zinc-400 scale-75'}`}
+           className={`absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-transform duration-100 ${collidingChapter !== null ? 'bg-white scale-100' : 'bg-zinc-400 scale-75'}`}
            style={{ top: '0%' }}
         ></div>
       </div>
 
       {/* 4. Hero Section */}
-      <section className="min-h-[90vh] flex flex-col items-center justify-center relative z-20 px-6">
-        <div className="text-center max-w-4xl pt-20">
+      <section className="min-h-[90vh] flex flex-col items-center justify-center relative z-[50] px-6">
+        <div className="text-center max-w-4xl pt-20 relative z-30">
            <div 
-              onClick={() => setIsSummaryOpen(true)}
-              className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 bg-zinc-50 border border-zinc-200 rounded-full shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+              className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 bg-zinc-50 border border-zinc-200 rounded-full shadow-sm cursor-default"
            >
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 duration-1000"></span>
@@ -600,7 +599,7 @@ const App = () => {
            </p>
         </div>
 
-      </section>>
+      </section>
 
       {/* 5. Origin Story (One-Time Collapse) */}
       <div 
@@ -610,10 +609,10 @@ const App = () => {
       >
          <div className="container mx-auto px-6 max-w-2xl text-center">
             <h2 className="text-2xl md:text-3xl font-medium leading-relaxed text-zinc-800 mb-8">
-               My journey started in <SharpieUnderline delay="0.5s">6th grade</SharpieUnderline>. I started an <SharpieUnderline delay="1s">apparel company</SharpieUnderline> with friends of mine. We <Highlighter delay="2s">got shutdown for soliciting to teachers</Highlighter> on campus.
+               My journey started in 6th grade. I started an apparel company with friends of mine. We <Highlighter delay={500}>got shutdown for soliciting to teachers</Highlighter> on campus.
             </h2>
             <p className="text-zinc-500 leading-relaxed font-light text-base md:text-lg">
-               Everything I tried failed for the next 6 years. But I learned a lot and realized I had to stop solving for things that weren't problems. I indulged in free work. <span className="font-medium text-zinc-900">Solve then sell.</span>
+               For the next six years, everything I tried failed. I was trying to solve problems that didn't exist. So, I decided to work for free, pickup skills, and get to know a industry. <span className="font-medium text-zinc-900">Understand, solve, sell.</span>
             </p>
             <div className="mt-12 animate-bounce opacity-40">
                <ArrowDown className="mx-auto" size={20} />

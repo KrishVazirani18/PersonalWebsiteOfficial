@@ -14,23 +14,20 @@ html, body {
   min-h: 100%;
 }
 
-@keyframes draw {
-  to { stroke-dashoffset: 0; }
+/* Highlighter Animation - Single Smooth Transition */
+.highlight-text {
+  background-image: linear-gradient(to right, #fde047 0%, #fde047 100%);
+  background-repeat: no-repeat;
+  background-position: 0 90%;
+  background-size: 0% 100%;
+  transition: background-size 1.5s cubic-bezier(0.65, 0, 0.35, 1); /* Smooth deliberate ease */
+  padding: 0 4px;
+  margin: 0 -4px;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
-@keyframes highlight {
-  to { transform: scaleX(1) skewY(-1deg) rotate(-1deg); }
-}
-
-.path-draw {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  animation: draw 1.5s ease-out forwards;
-}
-
-.highlight-anim {
-  transform: scaleX(0) skewY(-1deg) rotate(-1deg);
-  transform-origin: bottom left;
-  animation: highlight 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: 1s; /* Starts after underline */
+.highlight-text.active {
+  background-size: 100% 100%;
 }
