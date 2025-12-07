@@ -202,6 +202,42 @@ const SummaryModal = ({ isOpen, onClose }) => {
   );
 };
 
+const SharpieUnderline = ({ children, delay = "0s" }) => (
+  <span className="relative inline-block">
+    <span className="relative z-10">{children}</span>
+    <svg 
+      className="absolute left-0 top-full -mt-1 w-full h-3 pointer-events-none text-zinc-900 overflow-visible" 
+      viewBox="0 0 100 10" 
+      preserveAspectRatio="none"
+    >
+       <path 
+         d="M2 5 Q 50 10 98 5" 
+         vectorEffect="non-scaling-stroke" 
+         stroke="currentColor" 
+         strokeWidth="3" 
+         fill="none" 
+         strokeLinecap="round"
+         className="path-draw"
+         style={{ animationDelay: delay }}
+       />
+    </svg>
+  </span>
+);
+
+const Highlighter = ({ children, delay = "1.5s" }) => (
+  <span className="relative inline-block">
+    <span className="relative z-10 px-1">{children}</span>
+    <span 
+      className="absolute inset-0 bg-yellow-300 mix-blend-multiply highlight-anim -z-0"
+      style={{ 
+        animationDelay: delay,
+        transform: 'skewY(-1deg) rotate(-1deg)',
+        borderRadius: '2px 8px 3px 6px' 
+      }}
+    ></span>
+  </span>
+);
+
 const App = () => {
   const [activeChapter, setActiveChapter] = useState(0);
   const [unblurredChapters, setUnblurredChapters] = useState(new Set([0]));
@@ -535,15 +571,6 @@ const App = () => {
       {/* 4. Hero Section */}
       <section className="min-h-[90vh] flex flex-col items-center justify-center relative z-20 px-6">
         <div className="text-center max-w-4xl pt-20">
-           <div className="mb-8 flex justify-center">
-              <img 
-                src={headshot} 
-                alt="Krish Vazirani" 
-                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-2 border-zinc-100 shadow-2xl cursor-pointer hover:scale-105 transition-transform"
-                onClick={() => setIsSummaryOpen(true)}
-              />
-           </div>
-
            <div 
               onClick={() => setIsSummaryOpen(true)}
               className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 bg-zinc-50 border border-zinc-200 rounded-full shadow-sm hover:shadow-md transition-shadow cursor-pointer"
@@ -553,6 +580,14 @@ const App = () => {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
               </span>
               <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-600 font-medium">Open for opportunities</span>
+           </div>
+
+           <div className="mb-8 flex justify-center">
+              <img 
+                src={headshot} 
+                alt="Krish Vazirani" 
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-2 border-zinc-100 shadow-2xl"
+              />
            </div>
            
            <h1 className="text-5xl md:text-9xl font-bold tracking-tighter mb-8 text-zinc-900 selection:text-white selection:bg-zinc-900">
@@ -565,11 +600,7 @@ const App = () => {
            </p>
         </div>
 
-        <div className="absolute bottom-12 flex flex-col items-center gap-4 opacity-50">
-          <span className="font-mono text-[10px] uppercase tracking-widest">Initiate Sequence</span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-zinc-900 to-transparent"></div>
-        </div>
-      </section>
+      </section>>
 
       {/* 5. Origin Story (One-Time Collapse) */}
       <div 
@@ -579,7 +610,7 @@ const App = () => {
       >
          <div className="container mx-auto px-6 max-w-2xl text-center">
             <h2 className="text-2xl md:text-3xl font-medium leading-relaxed text-zinc-800 mb-8">
-               My journey started in 6th grade. I started an apparel company with friends of mine. We got shutdown for soliciting to teachers on campus.
+               My journey started in <SharpieUnderline delay="0.5s">6th grade</SharpieUnderline>. I started an <SharpieUnderline delay="1s">apparel company</SharpieUnderline> with friends of mine. We <Highlighter delay="2s">got shutdown for soliciting to teachers</Highlighter> on campus.
             </h2>
             <p className="text-zinc-500 leading-relaxed font-light text-base md:text-lg">
                Everything I tried failed for the next 6 years. But I learned a lot and realized I had to stop solving for things that weren't problems. I indulged in free work. <span className="font-medium text-zinc-900">Solve then sell.</span>

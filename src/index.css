@@ -13,3 +13,24 @@ html, body {
   width: 100%;
   min-h: 100%;
 }
+
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes highlight {
+  to { transform: scaleX(1) skewY(-1deg) rotate(-1deg); }
+}
+
+.path-draw {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw 1.5s ease-out forwards;
+}
+
+.highlight-anim {
+  transform: scaleX(0) skewY(-1deg) rotate(-1deg);
+  transform-origin: bottom left;
+  animation: highlight 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 1s; /* Starts after underline */
+}
