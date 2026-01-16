@@ -29,78 +29,8 @@ import c4l1 from '../card3_logos/card4_logos/1.png';
 import c4l2 from '../card3_logos/card4_logos/2.png';
 import c4l3 from '../card3_logos/card4_logos/3.jpg';
 
-const CustomCursor = () => {
-  const [isHovering, setIsHovering] = useState(false);
-  const cursorRef = useRef(null);
-  const trailingRef = useRef(null);
-  const cursorPos = useRef({ x: 0, y: 0 });
-  const trailingPos = useRef({ x: 0, y: 0 });
-  const isHoveringRef = useRef(false);
+// Custom cursor component removed
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    isHoveringRef.current = isHovering;
-  }, [isHovering]);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      cursorPos.current = { x: e.clientX, y: e.clientY };
-      const target = e.target;
-      setIsHovering(
-        target.tagName === 'A' || 
-        target.tagName === 'BUTTON' ||
-        target.closest('a') || 
-        target.closest('button') ||
-        target.classList.contains('cursor-pointer')
-      );
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    
-    let animationFrameId;
-    const animate = () => {
-      const ease = 0.15;
-      trailingPos.current.x += (cursorPos.current.x - trailingPos.current.x) * ease;
-      trailingPos.current.y += (cursorPos.current.y - trailingPos.current.y) * ease;
-      
-      if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate3d(${cursorPos.current.x}px, ${cursorPos.current.y}px, 0)`;
-      }
-      
-      if (trailingRef.current) {
-        const scale = isHoveringRef.current ? 1.5 : 1;
-        trailingRef.current.style.transform = `translate3d(${trailingPos.current.x}px, ${trailingPos.current.y}px, 0) scale(${scale})`;
-      }
-      
-      animationFrameId = requestAnimationFrame(animate);
-    };
-    
-    animate();
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
-  return (
-    <>
-      <div 
-        ref={cursorRef}
-        className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full mix-blend-difference pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2"
-        style={{ willChange: 'transform' }}
-      />
-      <div 
-        ref={trailingRef}
-        className="fixed top-0 left-0 w-8 h-8 border border-white rounded-full mix-blend-difference pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2"
-        style={{ willChange: 'transform' }}
-      />
-    </>
-  );
-};
 
 const SummaryModal = ({ isOpen, onClose }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -117,7 +47,7 @@ const SummaryModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-zinc-900/60 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-zinc-900 border border-zinc-800 w-full max-w-5xl h-[80vh] rounded-2xl overflow-hidden shadow-2xl flex relative animate-in zoom-in-95 duration-300">
+      <div className="bg-zinc-900 border border-zinc-800 w-full max-w-5xl h-[80dvh] md:h-[80vh] rounded-2xl overflow-hidden shadow-2xl flex relative animate-in zoom-in-95 duration-300">
          <button onClick={onClose} className="absolute top-6 right-6 text-zinc-500 hover:text-white transition-colors z-50 cursor-pointer">
             <X size={24} />
          </button>
@@ -514,9 +444,7 @@ const App = () => {
   ];
 
   return (
-    <div className="bg-white text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white min-h-screen relative overflow-x-hidden cursor-none">
-      <CustomCursor />
-
+    <div className="bg-white text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white min-h-screen relative overflow-x-hidden">
       {/* 1. Dynamic Grid Background */}
       <div className="fixed inset-0 z-0 pointer-events-none perspective-1000">
         <div 
@@ -546,9 +474,10 @@ const App = () => {
            href="https://linkedin.com/in/krish-vazirani-814511236" 
            target="_blank" 
            rel="noreferrer"
-           className="pointer-events-auto w-10 h-10 bg-white border border-zinc-200 rounded-full flex items-center justify-center hover:bg-zinc-900 hover:text-white hover:border-zinc-900 transition-all shadow-sm hover:shadow-md"
+           className="pointer-events-auto w-10 h-10 md:w-auto md:px-5 bg-white border border-zinc-200 rounded-full flex items-center justify-center md:gap-2 hover:bg-zinc-900 hover:text-white hover:border-zinc-900 transition-all shadow-sm hover:shadow-md"
         >
            <Linkedin size={16} />
+           <span className="hidden md:block text-xs font-medium tracking-wide">LINKEDIN</span>
         </a>
       </header>
       
@@ -569,7 +498,7 @@ const App = () => {
       </div>
 
       {/* 4. Hero Section */}
-      <section className="min-h-[90vh] flex flex-col items-center justify-center relative z-[50] px-6">
+      <section className="min-h-[90dvh] md:min-h-[90vh] flex flex-col items-center justify-center relative z-[50] px-6">
         <div className="text-center max-w-4xl pt-20 relative z-30">
            <div 
               className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 bg-zinc-50 border border-zinc-200 rounded-full shadow-sm cursor-default"
@@ -632,7 +561,7 @@ const App = () => {
                 key={chapter.id}
                 ref={addToRefs}
                 data-index={index}
-                className="min-h-screen flex items-center justify-center relative py-12 md:py-24"
+                className="min-h-[100dvh] flex items-center justify-center relative py-12 md:py-24"
              >
                 {/* Connector Node on Spine */}
                 <div className={`absolute left-6 md:left-1/2 top-1/2 -translate-y-1/2 w-4 h-4 -translate-x-1/2 z-20 transition-all duration-500 ${isActive ? 'scale-150' : 'scale-100'} ${collidingChapter === index ? 'scale-[3] opacity-0' : ''}`}>
@@ -759,7 +688,7 @@ const App = () => {
                <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest">3 Items</span>
             </div>
             
-            <div className="flex flex-col h-[600px] gap-2">
+            <div className="flex flex-col h-[70dvh] md:h-[600px] gap-2">
                {vaultItems.map((item, i) => {
                   const isActive = activeVaultItem === i;
                   
