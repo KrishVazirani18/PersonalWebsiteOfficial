@@ -20,7 +20,7 @@ const App = () => {
             </p>
 
             <p>
-              In 2024, I sold my first company for six figures. It helped realtors in the Silicon Valley market work faster. From 2025 to 2026, I worked in venture capital. Tracked deals, spoke to founders, helped portfolio companies, and built tech to make VCs more efficient. Taught me a lot. I was also running my product development firm, Brightstar, on the side.
+              In 2024, I sold my first company for six figures. It helped realtors in the Silicon Valley market work faster. From 2025 to 2026, I worked in venture capital. Tracked deals, spoke to founders, helped portfolio companies, and built tech to make VCs more efficient. Taught me a lot. I was also running my product development firm, <a href="https://www.linkedin.com/company/brightstar-ventures/" target="_blank" rel="noreferrer" className="underline decoration-zinc-300 hover:decoration-zinc-900 transition-colors">Brightstar</a>, on the side.
             </p>
 
             <p>
