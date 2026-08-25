@@ -1,55 +1,88 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect, useCallback } from 'react';
 
-// Hover/tap reveal. The panel sits inside a wrapper with transparent top padding
-// so the gap between term and panel stays hoverable — you can move the cursor
-// into the panel and click through to each entry.
+const GAP = 11;
+const EDGE = 16;
+
+// Hover/tap reveal. Positions itself against the viewport: opens below the
+// term when there's room, flips above when there isn't, and shifts sideways
+// to stay on screen. Transparent padding on the gap side keeps the path
+// between term and panel hoverable so you can move in and click a link.
 const Popover = ({ label, items }) => {
   const [open, setOpen] = useState(false);
-  const [shift, setShift] = useState(0);
-  const wrapRef = useRef(null);
+  const [pos, setPos] = useState({ shift: 0, place: 'bottom', maxH: null });
+  const btnRef = useRef(null);
   const popRef = useRef(null);
 
+  // single measuring pass — nothing here depends on a previous render's result,
+  // so this can't feed back into itself
+  const place = useCallback(() => {
+    const btn = btnRef.current;
+    const pop = popRef.current;
+    if (!btn || !pop) return;
+
+    const b = btn.getBoundingClientRect();
+    const width = pop.offsetWidth;
+    const height = pop.scrollHeight;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    const below = vh - b.bottom - GAP - EDGE;
+    const above = b.top - GAP - EDGE;
+    const useBottom = height <= below || below >= above;
+    const room = Math.max(120, useBottom ? below : above);
+
+    const centre = b.left + b.width / 2;
+    let shift = 0;
+    if (centre - width / 2 < EDGE) shift = EDGE - (centre - width / 2);
+    else if (centre + width / 2 > vw - EDGE) shift = vw - EDGE - (centre + width / 2);
+
+    setPos({
+      shift,
+      place: useBottom ? 'bottom' : 'top',
+      maxH: height > room ? room : null,
+    });
+  }, []);
+
   useLayoutEffect(() => {
-    if (!open) {
-      if (shift !== 0) setShift(0);
-      return;
-    }
-    if (!popRef.current) return;
-    const r = popRef.current.getBoundingClientRect();
-    const pad = 16;
-    let next = shift;
-    if (r.left < pad) next = shift + (pad - r.left);
-    else if (r.right > window.innerWidth - pad) next = shift + (window.innerWidth - pad - r.right);
-    if (next !== shift) setShift(next);
-  }, [open, shift]);
+    if (!open) return;
+    place();
+    window.addEventListener('resize', place);
+    return () => window.removeEventListener('resize', place);
+  }, [open, place]);
+
+  const bottom = pos.place === 'bottom';
 
   return (
     <span
-      ref={wrapRef}
       className="relative inline-block"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
       <button
+        ref={btnRef}
         type="button"
         aria-expanded={open}
         onPointerDown={(e) => { if (e.pointerType === 'touch') setOpen((v) => !v); }}
         onFocus={(e) => { if (e.target.matches(':focus-visible')) setOpen(true); }}
-        // don't close when focus moves into the panel to click a link
-        onBlur={(e) => { if (!wrapRef.current?.contains(e.relatedTarget)) setOpen(false); }}
+        onBlur={(e) => { if (!e.currentTarget.parentNode.contains(e.relatedTarget)) setOpen(false); }}
         className="border-b border-dotted border-zinc-400 hover:border-zinc-900 focus:outline-none focus-visible:border-zinc-900 transition-colors"
       >
         {label}
       </button>
 
+      {open && (
       <span
-        style={{ transform: `translateX(calc(-50% + ${shift}px)) translateY(${open ? 0 : -4}px)` }}
-        className={`absolute left-1/2 top-full z-20 pt-[11px] transition-all duration-150
-          ${open ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
+        style={{
+          transform: `translateX(calc(-50% + ${pos.shift}px))`,
+          [bottom ? 'top' : 'bottom']: '100%',
+          [bottom ? 'paddingTop' : 'paddingBottom']: `${GAP}px`,
+        }}
+        className="absolute left-1/2 z-20 animate-fade"
       >
         <span
           ref={popRef}
-          className="flex min-h-[164px] w-[360px] max-w-[calc(100vw-32px)] flex-col border border-zinc-300 bg-white text-left"
+          style={pos.maxH ? { maxHeight: `${pos.maxH}px`, overflowY: 'auto' } : undefined}
+          className="flex w-[360px] max-w-[calc(100vw-32px)] flex-col border border-zinc-300 bg-white text-left"
         >
           {items.map((it) => (
             <span
@@ -85,6 +118,7 @@ const Popover = ({ label, items }) => {
           ))}
         </span>
       </span>
+      )}
     </span>
   );
 };
