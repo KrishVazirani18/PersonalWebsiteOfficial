@@ -2,32 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-  scroll-behavior: smooth;
-  overscroll-behavior-y: none;
+html,
+body {
   width: 100%;
   height: 100%;
+  overscroll-behavior-y: none;
 }
 
 #root {
   width: 100%;
-  min-h: 100%;
-}
-
-/* Highlighter Animation - Single Smooth Transition */
-.highlight-text {
-  background-image: linear-gradient(to right, #fde047 0%, #fde047 100%);
-  background-repeat: no-repeat;
-  background-position: 0 90%;
-  background-size: 0% 100%;
-  transition: background-size 1.5s cubic-bezier(0.65, 0, 0.35, 1); /* Smooth deliberate ease */
-  padding: 0 4px;
-  margin: 0 -4px;
-  border-radius: 2px;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-
-.highlight-text.active {
-  background-size: 100% 100%;
+  min-height: 100%;
 }
