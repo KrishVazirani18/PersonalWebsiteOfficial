@@ -9,6 +9,7 @@ import Popover from './Popover';
 const link =
   'underline decoration-zinc-300 hover:decoration-zinc-900 transition-colors';
 
+  //WWO
 const COMPANIES = [
   {
     name: 'Brightstar',
