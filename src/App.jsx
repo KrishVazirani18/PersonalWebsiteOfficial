@@ -61,7 +61,7 @@ const App = () => {
 
           <section className="mt-8 md:mt-10 w-full space-y-5 text-[14px] leading-relaxed text-zinc-900">
             <p>
-              Hi, I'm Krish. I like working on things that don't immediately make sense. Right now, I'm the first hire at <a href="https://www.aseonlabs.com/" target="_blank" rel="noreferrer" className={link}>Aseon Labs</a> (P26), where I work on product. We're building robotic pit stops for self-driving cars. Aseon is backed by some incredible investors including YC, Robinhood, and the founders of Mercury, Uber, and Lyft.
+              Hi, I'm Krish. I like working on things that don't immediately make sense. Right now, I'm the first hire at <a href="https://www.aseonlabs.com/" target="_blank" rel="noreferrer" className={link}>Aseon Labs</a> (P26). We're building robotic pit stops for self-driving cars. Aseon is backed by some incredible investors including YC, Robinhood, and the founders of Mercury, Uber, and Lyft.
             </p>
 
             <p>
