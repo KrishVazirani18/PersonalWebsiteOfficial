@@ -16,7 +16,7 @@ const OTHER = [
   {
     name: 'Brightstar',
     year: '2025–2026',
-    desc: 'Product Development Firm',
+    desc: 'Co-Founder',
     note: 'Worked with 3 $1B+ companies',
     logo: brightstarLogo,
     url: 'https://www.linkedin.com/company/brightstar-ventures/',
@@ -40,7 +40,7 @@ const OTHER = [
   {
     name: 'PowerCMA',
     year: '2024',
-    desc: 'Automated Marketing for Realtors',
+    desc: 'Co-Founder',
     note: 'Sold for $100K+',
     logo: powercmaLogo,
     crop: true,
