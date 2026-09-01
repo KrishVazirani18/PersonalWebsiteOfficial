@@ -9,9 +9,14 @@ const EDGE = 16;
 // between term and panel hoverable so you can move in and click a link.
 const Popover = ({ label, items }) => {
   const [open, setOpen] = useState(false);
+  // closing keeps the panel mounted while the fade-out plays
+  const [closing, setClosing] = useState(false);
   const [pos, setPos] = useState({ shift: 0, place: 'bottom', maxH: null });
   const btnRef = useRef(null);
   const popRef = useRef(null);
+
+  const show = () => { setClosing(false); setOpen(true); };
+  const hide = () => { if (open) { setOpen(false); setClosing(true); } };
 
   // single measuring pass — nothing here depends on a previous render's result,
   // so this can't feed back into itself
@@ -55,29 +60,30 @@ const Popover = ({ label, items }) => {
   return (
     <span
       className="relative inline-block"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onMouseEnter={show}
+      onMouseLeave={hide}
     >
       <button
         ref={btnRef}
         type="button"
         aria-expanded={open}
-        onPointerDown={(e) => { if (e.pointerType === 'touch') setOpen((v) => !v); }}
-        onFocus={(e) => { if (e.target.matches(':focus-visible')) setOpen(true); }}
-        onBlur={(e) => { if (!e.currentTarget.parentNode.contains(e.relatedTarget)) setOpen(false); }}
+        onPointerDown={(e) => { if (e.pointerType === 'touch') (open ? hide() : show()); }}
+        onFocus={(e) => { if (e.target.matches(':focus-visible')) show(); }}
+        onBlur={(e) => { if (!e.currentTarget.parentNode.contains(e.relatedTarget)) hide(); }}
         className="border-b border-dotted border-zinc-400 hover:border-zinc-900 focus:outline-none focus-visible:border-zinc-900 transition-colors"
       >
         {label}
       </button>
 
-      {open && (
+      {(open || closing) && (
       <span
         style={{
           transform: `translateX(calc(-50% + ${pos.shift}px))`,
           [bottom ? 'top' : 'bottom']: '100%',
           [bottom ? 'paddingTop' : 'paddingBottom']: `${GAP}px`,
         }}
-        className="absolute left-1/2 z-20 animate-fade"
+        onAnimationEnd={(e) => { if (e.animationName === 'fade-out') setClosing(false); }}
+        className={`absolute left-1/2 z-20 ${open ? 'animate-fade' : 'animate-fade-out'}`}
       >
         <span
           ref={popRef}
