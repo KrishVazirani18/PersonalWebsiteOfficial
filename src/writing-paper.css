@@ -1,0 +1,41 @@
+.essay-paper-background {
+  background: #f1f1f1;
+}
+
+.essay-paper {
+  position: relative;
+  isolation: isolate;
+  padding: 56px 64px;
+  background: linear-gradient(rgb(255 255 255 / 25%), rgb(255 255 255 / 25%)), #fff url('/images/writing/paper-texture.png') repeat;
+  background-size: 128px 128px;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 4%), 0 12px 40px rgb(0 0 0 / 5%);
+}
+
+.essay-paper img {
+  mix-blend-mode: multiply;
+}
+
+.essay-paper-layout nav {
+  padding-left: 65px;
+}
+
+@media (max-width: 639px) {
+  .essay-paper-layout {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .essay-paper-layout nav {
+    padding-left: 17px;
+  }
+
+  .essay-paper {
+    padding: 30px 16px;
+  }
+}
+
+@media print {
+  .essay-paper-background, .essay-paper { background: white; }
+  .essay-paper { padding: 0; border: 0; box-shadow: none; }
+}

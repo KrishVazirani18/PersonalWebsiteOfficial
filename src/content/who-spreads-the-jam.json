@@ -1,0 +1,132 @@
+{
+  "title": "Who Spreads the Jam?",
+  "date": "2026-10-16",
+  "displayDate": "Oct 16, 2026",
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Jam, despite being the best part, has a way of refusing to go where you want it. You spread it across the whole slice, only to discover that one bite gets all the fruit and the next is basically toast.",
+      "signature": false
+    },
+    {
+      "type": "paragraph",
+      "text": "A company can be full of people making extraordinary progress with AI yet still have very little understanding of what it’s now capable of as a team. The same learning loop has now become increasingly more noticeable across teams:",
+      "signature": false
+    },
+    {
+      "type": "image",
+      "src": "/images/writing/who-spreads-the-jam/learning-loop.png",
+      "alt": "A learning loop: a new discovery becomes everyday work, colleagues push it further, and their discoveries change what you try next.",
+      "compact": true
+    },
+    {
+      "type": "paragraph",
+      "text": "On a team that’s constantly pushing what it can do with AI, there’s a lot to miss. You can roll your chair, peek at a colleague’s Codex session, and be like, “We can do that now?” Then you wonder what else you’ve missed.",
+      "signature": false
+    },
+    {
+      "type": "paragraph",
+      "text": "Earlier this year, I joined Aseon Labs, a startup building the infrastructure to charge and service autonomous fleets via robotics. The founders laid a simple thesis before me: how do we build a $1B+ business with <20 people? I could easily picture that in software. For hardware? That was incredibly hard to wrap my head around. I was used to building things that didn’t require hard hats and caution tape at the office.",
+      "signature": false
+    },
+    {
+      "type": "paragraph",
+      "text": "Much of my early attention went into a problem that seemed to be everywhere from April to June: the self-learning company brain. At the same time, I was helping the team (electrical, mechanical, and robotics engineers) get comfortable trusting frontier tools with their work. It took me nearly 11 weeks (and a lot of tokens) to help achieve a company-wide breakthrough in throughput for large work assignments. We now had a useful foundation, consistent enablement, and systems that could maintain themselves.",
+      "signature": false
+    },
+    {
+      "type": "paragraph",
+      "text": "What surprised me was how quickly that started to feel like the minimum. I’m quite sure plenty of fast-moving teams hit this point of convergence. Things we’d spent months figuring out were becoming things you expected a company to have. Better models (Astra, etc.) kept arriving, and we kept finding new ways to use them. But nothing felt the same as that initial spike of “no f*cking way” moments. Where does the next jump come from? Here’s my read:",
+      "signature": false
+    },
+    {
+      "type": "image",
+      "src": "/images/writing/who-spreads-the-jam/capability-curve.png?v=b96e8c66",
+      "alt": "Conceptual team-capability curve: initial enablement, stepwise gains from subsequent model and tool updates, a plateau labeled “Teams are stuck here,” and a dotted possible next rise marked with a question mark.",
+      "compact": false
+    },
+    {
+      "type": "paragraph",
+      "text": "Bees move between flowers, carrying pollen from one to the next. That small exchange helps produce the fruit that eventually finds its way into our jam. My bet is that the next jump comes from cross-pollination. Let me elaborate.",
+      "signature": false
+    },
+    {
+      "type": "paragraph",
+      "text": "Everyone on a team is pushing AI against different problems, and their expertise shapes what they discover. A founder working with AI to develop a company strategy and a mechanical engineer using CUA (Computer-Use) in SolidWorks might seem to have very little to teach each other about their tools. But an approach that works brilliantly in one field can have an application elsewhere that neither person would immediately recognize.",
+      "signature": false
+    },
+    {
+      "type": "paragraph",
+      "text": "When those discoveries move across disciplines, they pick up new applications, improvements, and possibilities their creators hadn’t considered. The team starts building on what it has collectively figured out. An experiment in one corner of the company can change what gets attempted in several others, and what comes out of those attempts gives the whole team more to work with.",
+      "signature": false
+    },
+    {
+      "type": "paragraph",
+      "text": "I was relentlessly working on a Blender-based rendering setup to augment our sales motion, but kept running into blockers. One day, I zipped it up and gave it to George, one of our founders. He brought his own judgment to the process, worked with his agents for a bit, and got WAY better results than I did. He saw how the same approach could help Jan, our mechanical engineer, who used it to create 3D models of components for the next-generation pod. I’d built something for a completely different use case, and here it was finding its way into mechanical design. How many other things had we figured out whose best application was still sitting somewhere else in the company? And what would it take to find and distribute those connections consistently?",
+      "signature": false
+    },
+    {
+      "type": "paragraph",
+      "text": "Ramp’s Ian Macomber describes a similar feedback loop. Corrections made while working with agents become accumulated learning when the company builds a way for those fixes to improve subsequent work. We should be able to measure the difference: how much time and rework does a team save when it inherits an approach instead of discovering it from scratch, while reaching the same quality of result?",
+      "signature": false,
+      "links": [
+        {
+          "text": "Ian Macomber",
+          "href": "https://www.iandmacomber.com/blog/post-ai-data-stack"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "src": "/images/writing/who-spreads-the-jam/connections.png",
+      "alt": "A network of discoveries, with a small group of unlocked connections and many more still to discover.",
+      "compact": false
+    },
+    {
+      "type": "paragraph",
+      "text": "Cursor’s Bugbot learns rules from developer feedback, while Notion’s shared skills library helps teams reuse approaches others have figured out. What keeps bothering me is how easily we mistake a shared skill for shared understanding. A skill compresses an approach into something reusable, but it only carries what we knew to put into it. How much of what made it work never made it into the file? You can distribute the file to everyone and still leave its most valuable application undiscovered. A growing skills folder can look a lot like progress, while the actual learning stays remarkably local.",
+      "signature": false,
+      "links": [
+        {
+          "text": "Cursor’s Bugbot",
+          "href": "https://cursor.com/blog/bugbot-learning"
+        },
+        {
+          "text": "Notion’s shared skills library",
+          "href": "https://www.notion.com/en-gb/releases/2026-09-15"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Hardware makes that gap especially stubborn: methods have to cross unfamiliar tools and physical constraints. I think the payoff can be enormous when a useful connection prevents an expensive wrong turn or unblocks work the rest of the build depends on (especially because hardware follows a notoriously serial development process). Not that this is of the utmost importance, but we’ve probably burned $30K–$40K in tokens over a few months figuring things out. Some of that spend could probably be saved if those learnings traveled further. But someone has to go looking for those connections and stay involved long enough to make them useful. An internal AI champion can only discover so much. Only share so much. Until it starts eating into their main job. For most teams, making this happen consistently needs ownership and protected time. Everyone being willing to share doesn’t mean anyone is doing the translation.",
+      "signature": false
+    },
+    {
+      "type": "paragraph",
+      "text": "In 2023–2025, the industry glamorized context capture and sharing. But that had a ceiling of its own. The next goal was a self-learning system, the company brain, that could keep learning as the team worked. The ambition is for cross-pollination to happen autonomously: agents learning from the team’s actual interactions with AI, including the human corrections that make an approach work, then testing where else it could be useful and carrying improvements back. Each use would become another chance to improve what the whole team can do! I’m extremely fortunate to have the space and responsibility to experiment with exactly that at Aseon.",
+      "signature": false
+    },
+    {
+      "type": "image",
+      "src": "/images/writing/who-spreads-the-jam/shared-learning.png?v=b159df22",
+      "alt": "Three teams build on prior learning, including dead ends. Gray lines show what was already learned, while black lines show new attempts; arrows carry learning from Team 1 to Team 2 to Team 3.",
+      "compact": false
+    },
+    {
+      "type": "paragraph",
+      "text": "Getting from 10× to 100× takes different mechanics than getting from 1× to 10×. The next jump means multiplying the output we’ve already unlocked with AI. That takes a different kind of progress. A faster computer was one kind of progress. The internet opened up something else entirely: what computers could do together. We are at an unprecedented period of innovation, imagination, and growth.",
+      "signature": false
+    },
+    {
+      "type": "paragraph",
+      "text": "You can pick the most amazing bread and jam. But until you have someone (or something) who can spread it, you have nothing but a well-funded pantry. Learning how to spread it deserves an obsession of its own.",
+      "signature": false
+    },
+    {
+      "type": "paragraph",
+      "text": "-- Krish",
+      "signature": true
+    }
+  ]
+}

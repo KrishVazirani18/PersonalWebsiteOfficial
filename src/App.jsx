@@ -5,6 +5,8 @@ import powercmaLogo from '../images/logos/powercma.png';
 import lvlupLogo from '../images/logos/lvlup.jpg';
 import chapterOneLogo from '../images/logos/chapterone.jpg';
 import Popover from './Popover';
+import Writing from './Writing';
+import WritingLab from './WritingLab';
 
 // inline mentions stay in ink; only the footer links read as blue
 const link =
@@ -49,6 +51,10 @@ const OTHER = [
 ];
 
 const App = () => {
+  const path = window.location.pathname.replace(/\/+$/, '') || '/';
+  if (import.meta.env.DEV && (path === '/writing/lab' || path.startsWith('/writing/lab/'))) return <WritingLab path={path} />;
+  if (path !== '/') return <Writing path={path} />;
+
   return (
     <div className="bg-white text-zinc-900 font-sans min-h-screen">
       <main className="max-w-5xl mx-auto px-6 py-10 md:py-12 min-h-screen">
@@ -75,7 +81,7 @@ const App = () => {
 
           <div className="mt-10 w-full text-center text-[14px] text-zinc-900">
             <p>
-              <a href="https://linkedin.com/in/krish-vazirani-814511236" target="_blank" rel="noreferrer" className={linkBlue}>LinkedIn</a> / krishvazirani1018 [at] gmail [dot] com / <a href="https://github.com/KrishVazirani18" target="_blank" rel="noreferrer" className={linkBlue}>GitHub</a>
+              <a href="https://linkedin.com/in/krish-vazirani-814511236" target="_blank" rel="noreferrer" className={linkBlue}>LinkedIn</a> / krishvazirani1018 [at] gmail [dot] com / <a href="https://github.com/KrishVazirani18" target="_blank" rel="noreferrer" className={linkBlue}>GitHub</a> / <a href="/writing" className={linkBlue}>Writing</a>
             </p>
           </div>
         </div>
