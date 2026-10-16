@@ -17,7 +17,9 @@
       "type": "image",
       "src": "/images/writing/who-spreads-the-jam/learning-loop.png",
       "alt": "A learning loop: a new discovery becomes everyday work, colleagues push it further, and their discoveries change what you try next.",
-      "compact": true
+      "compact": true,
+      "width": 1797,
+      "height": 1446
     },
     {
       "type": "paragraph",
@@ -43,7 +45,9 @@
       "type": "image",
       "src": "/images/writing/who-spreads-the-jam/capability-curve.png?v=b96e8c66",
       "alt": "Conceptual team-capability curve: initial enablement, stepwise gains from subsequent model and tool updates, a plateau labeled “Teams are stuck here,” and a dotted possible next rise marked with a question mark.",
-      "compact": false
+      "compact": false,
+      "width": 1865,
+      "height": 1391
     },
     {
       "type": "paragraph",
@@ -80,7 +84,9 @@
       "type": "image",
       "src": "/images/writing/who-spreads-the-jam/connections.png",
       "alt": "A network of discoveries, with a small group of unlocked connections and many more still to discover.",
-      "compact": false
+      "compact": false,
+      "width": 1492,
+      "height": 1082
     },
     {
       "type": "paragraph",
@@ -111,7 +117,9 @@
       "type": "image",
       "src": "/images/writing/who-spreads-the-jam/shared-learning.png?v=b159df22",
       "alt": "Three teams build on prior learning, including dead ends. Gray lines show what was already learned, while black lines show new attempts; arrows carry learning from Team 1 to Team 2 to Team 3.",
-      "compact": false
+      "compact": false,
+      "width": 1793,
+      "height": 907
     },
     {
       "type": "paragraph",

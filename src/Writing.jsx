@@ -30,7 +30,7 @@ export default function Writing({ path }) {
       <main className={`mx-auto px-6 py-7 md:py-12 ${reviewing ? 'copy-review-page' : 'max-w-5xl'} ${paperView ? 'essay-paper-layout' : ''}`}>
         <div className={`mx-auto ${reviewing ? '' : paperView ? 'max-w-[802px]' : 'max-w-2xl'}`}>
           <nav className="mb-7 text-xs text-zinc-500 md:mb-8" aria-label="Back navigation">
-            <a href={isEssay ? '/writing' : '/'} className="hover:text-zinc-900 hover:underline">
+            <a href={isEssay ? '/writing' : '/'} className="writing-back-link hover:text-zinc-900 hover:underline">
               {isEssay ? '← Writing' : '← Home'}
             </a>
           </nav>
@@ -39,7 +39,7 @@ export default function Writing({ path }) {
             <>
               <h1 className="mb-6 text-base font-medium">Writing</h1>
               <div className="flex items-baseline justify-between gap-4 text-sm">
-                <a href={essayPath} className="hover:underline">{essay.title}</a>
+                <a href={essayPath} className="writing-entry-link hover:underline">{essay.title}</a>
                 <time dateTime={essay.date} className="whitespace-nowrap text-[11px] text-zinc-500">
                   {essay.displayDate}
                 </time>
@@ -76,7 +76,9 @@ export default function Writing({ path }) {
                 {essay.blocks.map((block, index) => block.type === 'image' ? (
                   <div key={block.src} className={reviewing ? 'copy-review-figure' : ''}>
                     <figure className="my-8 -mx-3 sm:mx-0">
-                      <img src={block.src} alt={block.alt} className="h-auto w-full" loading="lazy" />
+                      <a href={block.src} target="_blank" rel="noopener noreferrer" className="essay-image-link block cursor-zoom-in" aria-label={`Open full-size diagram: ${block.alt}`}>
+                        <img src={block.src} alt={block.alt} width={block.width} height={block.height} className="h-auto w-full" loading="lazy" />
+                      </a>
                     </figure>
                   </div>
                 ) : reviewing ? (
