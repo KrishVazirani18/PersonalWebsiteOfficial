@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect, useCallback } from 'react';
+import React, { useState, useRef, useLayoutEffect, useEffect, useCallback } from 'react';
 
 const GAP = 11;
 const EDGE = 16;
@@ -14,6 +14,7 @@ const Popover = ({ label, items }) => {
   const [pos, setPos] = useState({ shift: 0, place: 'bottom', maxH: null });
   const btnRef = useRef(null);
   const popRef = useRef(null);
+  const rootRef = useRef(null);
 
   const show = () => { setClosing(false); setOpen(true); };
   const hide = () => { if (open) { setOpen(false); setClosing(true); } };
@@ -55,13 +56,31 @@ const Popover = ({ label, items }) => {
     return () => window.removeEventListener('resize', place);
   }, [open, place]);
 
+  useEffect(() => {
+    if (!open) return;
+    const dismiss = () => { setOpen(false); setClosing(true); };
+    const onOutsidePointer = (event) => {
+      if (!rootRef.current?.contains(event.target)) dismiss();
+    };
+    const onEscape = (event) => {
+      if (event.key === 'Escape') dismiss();
+    };
+    document.addEventListener('pointerdown', onOutsidePointer);
+    document.addEventListener('keydown', onEscape);
+    return () => {
+      document.removeEventListener('pointerdown', onOutsidePointer);
+      document.removeEventListener('keydown', onEscape);
+    };
+  }, [open]);
+
   const bottom = pos.place === 'bottom';
 
   return (
     <span
+      ref={rootRef}
       className="relative inline-block"
-      onMouseEnter={show}
-      onMouseLeave={hide}
+      onPointerEnter={(event) => { if (event.pointerType === 'mouse') show(); }}
+      onPointerLeave={(event) => { if (event.pointerType === 'mouse') hide(); }}
     >
       <button
         ref={btnRef}
