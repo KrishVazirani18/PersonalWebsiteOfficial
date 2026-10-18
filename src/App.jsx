@@ -75,7 +75,7 @@ const App = () => {
             </p>
 
             <p>
-              You can find a few other things I've done <Popover label="here" items={OTHER} />.
+              You can find a few other things I've done <span className="whitespace-nowrap"><Popover label="here" items={OTHER} />.</span>
             </p>
           </section>
 
