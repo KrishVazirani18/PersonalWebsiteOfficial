@@ -14,12 +14,15 @@ body {
   min-height: 100%;
 }
 
+.contact-details {
+  display: inline-flex;
+  flex-direction: column;
+}
+
 .contact-links {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  max-width: 360px;
-  margin-inline: auto;
 }
 
 .contact-links a {

@@ -80,12 +80,16 @@ const App = () => {
           </section>
 
           <footer className="mt-10 w-full text-center text-[14px] text-zinc-900">
-            <nav className="contact-links" aria-label="Contact and writing">
-              <a href="https://linkedin.com/in/krish-vazirani-814511236" target="_blank" rel="noreferrer" className={linkBlue}>LinkedIn</a>
-              <a href="https://github.com/KrishVazirani18" target="_blank" rel="noreferrer" className={linkBlue}>GitHub</a>
-              <a href="/writing" className={linkBlue}>Writing</a>
-            </nav>
-            <p className="contact-email">krishvazirani1018 [at] gmail [dot] com</p>
+            <div className="contact-details">
+              <nav className="contact-links" aria-label="Contact and writing">
+                <a href="https://linkedin.com/in/krish-vazirani-814511236" target="_blank" rel="noreferrer" className={linkBlue}>LinkedIn</a>
+                <span aria-hidden="true">/</span>
+                <a href="https://github.com/KrishVazirani18" target="_blank" rel="noreferrer" className={linkBlue}>GitHub</a>
+                <span aria-hidden="true">/</span>
+                <a href="/writing" className={linkBlue}>Writing</a>
+              </nav>
+              <p className="contact-email">krishvazirani1018 [at] gmail [dot] com</p>
+            </div>
           </footer>
         </div>
       </main>
