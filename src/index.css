@@ -18,6 +18,8 @@ body {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: center;
+  max-width: 360px;
+  margin-inline: auto;
 }
 
 .contact-links a {
@@ -28,36 +30,9 @@ body {
 }
 
 .contact-email {
-  grid-column: 1 / -1;
-  grid-row: 2;
   margin-top: 4px;
   font-size: clamp(11px, 3.5vw, 14px);
   white-space: nowrap;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-}
-
-@media (min-width: 640px) {
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .contact-links a {
-    display: inline;
-    min-height: 0;
-  }
-
-  .contact-email {
-    margin-top: 0;
-  }
-
-  .contact-links > * + *::before {
-    content: '/';
-    display: inline-block;
-    margin-right: 8px;
-    color: #18181b;
-    text-decoration: none;
-  }
 }
